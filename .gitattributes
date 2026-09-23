@@ -1,0 +1,16 @@
+# Normalize line endings to LF in the repository and on checkout.
+* text=auto eol=lf
+
+# Binary assets
+*.mid binary
+*.midi binary
+*.MID binary
+*.db binary
+*.sqlite binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary

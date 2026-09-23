@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>gms-ma — song structure</title>
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/timeline.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+</head>
+<body>
+<div id="top">
+  <h1>gms-ma</h1>
+  <a class="toplink" href="/library">Library</a>
+  <select id="songSel"></select>
+  <button id="btnPlay">&#9654; Play</button>
+  <button id="btnStop">&#9632; Stop</button>
+  <select id="viewSel" title="Timeline view">
+    <option value="arrangement" selected>View: Arrangement</option>
+    <option value="motifs">View: Motifs</option>
+    <option value="harmony">View: Harmony</option>
+    <option value="repetition">View: Repetition</option>
+  </select>
+  <span class="btnsep"></span>
+  <button id="btnZoomOut" title="Zoom out">−</button>
+  <span id="zoomLabel" class="stat">100%</span>
+  <button id="btnZoomIn" title="Zoom in">＋</button>
+  <button id="btnZoomFit" title="Fit entire song">Fit</button>
+  <select id="devSel"></select>
+  <span id="pos" class="stat"></span>
+  <span id="songStats" class="stat"></span>
+</div>
+<div id="layout">
+  <div id="main">
+    <div id="scroller">
+      <canvas id="canvas"></canvas>
+      <div id="hovertip" class="hovertip hide"></div>
+    </div>
+    <button id="legendToggle" title="Show / hide legend">?</button>
+    <div id="legend" class="legend hide">
+      <div class="lg-title">Legend</div>
+      <div class="lg-row">&#8596; X = time (bar numbers)</div>
+      <div class="lg-row">&#8597; Y = tracks / instruments (one row each)</div>
+      <div class="lg-row"><span class="lg-swatch"></span> same colour = same repeating pattern</div>
+      <div class="lg-row" id="legendView"></div>
+    </div>
+  </div>
+  <div id="side"></div>
+</div>
+<div id="hoverbar" class="stat"></div>
+<div id="toast"></div>
+<script>
+  window.__maLoadFailed = function () {
+    var el = document.getElementById("err");
+    if (!el) {
+      el = document.createElement("div");
+      el.id = "err";
+      el.style.color = "#ff8f8f";
+      el.style.padding = "10px 14px";
+      document.body.insertBefore(el, document.body.firstChild);
+    }
+    el.textContent = "Could not load the viewer app \u2014 is the server still running? "
+      + "Start it with: python -m gms_ma view";
+  };
+</script>
+<script type="module" src="/assets/js/timeline/app.js" onerror="__maLoadFailed()"></script>
+</body>
+</html>

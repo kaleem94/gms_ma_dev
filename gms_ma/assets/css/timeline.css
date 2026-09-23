@@ -1,0 +1,64 @@
+/* Song-structure timeline viewer. */
+:root { --bg:var(--s0f1115); --panel:var(--s171a21); --line:var(--s2a2f3a); --txt:var(--sdfe5ee); --dim:var(--s8b94a3); --acc:var(--s4da3ff); }
+  * { box-sizing:border-box; }
+  body { margin:0; font:14px/1.4 "Segoe UI",system-ui,sans-serif; background:var(--bg); color:var(--txt); display:flex; flex-direction:column; height:100vh; }
+  #top { display:flex; gap:14px; align-items:center; padding:10px 14px; background:var(--panel); border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  select, button, input { background:var(--s0f1115); color:var(--txt); border:1px solid var(--line); border-radius:6px; padding:6px 10px; }
+  button { cursor:pointer; }
+  button:hover { border-color:var(--acc); }
+  button:disabled { opacity:.45; cursor:default; }
+  h1 { font-size:16px; margin:0 6px 0 0; }
+  .chip { font-size:12px; padding:2px 8px; border-radius:10px; border:1px solid var(--line); color:var(--dim); }
+  .chip b { color:var(--txt); font-weight:600; }
+  #layout { display:flex; flex:1; min-height:0; }
+  #main { flex:1; position:relative; overflow:hidden; }
+  #scroller { position:absolute; inset:0; overflow:auto; }
+  #hoverbar { height:26px; display:flex; align-items:center; padding:0 12px;
+    background:var(--panel); border-top:1px solid var(--line); font-size:12px;
+    color:var(--dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  #legendToggle { position:absolute; right:12px; bottom:12px; z-index:5; width:26px;
+    height:26px; padding:0; border-radius:50%; font-weight:700; }
+  #legend { position:absolute; right:12px; bottom:46px; z-index:5; width:268px;
+    background:var(--panel); border:1px solid var(--line); border-radius:8px;
+    padding:10px 12px; font-size:12px; color:var(--dim);
+    box-shadow:0 8px 24px rgba(0,0,0,.35); }
+  #legend.hide { display:none; }
+  #legend .lg-title { color:var(--txt); font-weight:600; margin-bottom:6px; }
+  #legend .lg-row { margin:3px 0; display:flex; gap:6px; align-items:flex-start; }
+  #legend .lg-swatch { width:12px; height:12px; border-radius:3px; flex:0 0 auto;
+    background:hsl(200,60%,50%); display:inline-block; margin-top:2px; }
+  .hovertip { position:absolute; z-index:6; max-width:320px; pointer-events:none;
+    background:var(--panel); border:1px solid var(--line); border-radius:6px;
+    padding:6px 9px; font-size:11px; color:var(--dim); line-height:1.35;
+    box-shadow:0 6px 18px rgba(0,0,0,.35); }
+  .hovertip.hide { display:none; }
+  .hovertip b { color:var(--txt); font-weight:600; }
+  .hovertip .tip-hint { color:var(--s4da3ff); }
+  #side { width:300px; border-left:1px solid var(--line); background:var(--panel); padding:12px; overflow-y:auto; font-size:13px; }
+  #side h3 { margin:2px 0 8px; }
+  #side .row { margin:4px 0; color:var(--dim); }
+  #side .row b { color:var(--txt); font-weight:600; }
+  #canvas { display:block; cursor:crosshair; touch-action:none; }
+  .tags { margin:4px 0; }
+  .tchip { display:inline-block; font-size:11px; background:var(--s1b2330); border:1px solid var(--s2c3550); border-radius:9px; padding:1px 7px; margin:2px 3px 0 0; color:var(--scfe3ff); }
+  .tchip.manual { border-color:var(--sffb454); color:var(--sffd9a0); }
+  #err { color:var(--sff8f8f); padding:6px 14px; }
+  .stat { font-size:12px; color:var(--dim); }
+  .btnsep { width:1px; height:22px; background:var(--line); display:inline-block; }
+  .mixbtns { margin:2px 0 6px; }
+  .mixbtns button { font-size:11px; padding:2px 8px; margin-right:4px; }
+  #mixnote { font-size:11px; }
+  .mixrow { display:flex; align-items:center; gap:6px; padding:3px 2px; border-bottom:1px solid var(--s1e232c); }
+  .mixrow .mchk { display:flex; align-items:center; }
+  .mixrow .mchk input { accent-color:var(--acc); }
+  .mixrow .mtext { flex:1; min-width:0; overflow:hidden; }
+  .mixrow .mtext b { display:block; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; }
+  .mixrow .mtext .stat { font-size:10px; display:block; }
+  .mixrow.off .mtext { opacity:.35; }
+  .msolo { width:22px; height:22px; padding:0; font-weight:700; color:var(--s9aa4b2); }
+  .msolo.active { border-color:var(--sf2c94c); color:var(--sf2c94c); }
+  .seg { display:inline-flex; flex-wrap:wrap; border:1px solid var(--line); border-radius:6px; overflow:hidden; margin:2px 0; }
+  .seg button { border:none; border-radius:0; padding:3px 8px; font-size:11px; }
+  .seg button.on { background:var(--acc); color:#08121f; }
+  a.toplink { color:var(--acc); text-decoration:none; font-size:13px; }
+  a.toplink:hover { text-decoration:underline; }

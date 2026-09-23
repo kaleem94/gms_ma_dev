@@ -1,0 +1,16 @@
+# venv / python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# generated artifacts
+out/
+db/*.db
+/data
+/db
+
+# packaging / build
+build/
+dist/
+*.egg-info/

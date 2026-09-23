@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gms-ma"
+dynamic = ["version"]
+description = "GMS MIDI analyzer: General-MIDI loop decomposition and library toolkit"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "kaleem94" }]
+keywords = ["midi", "music", "musicology", "analysis", "loops", "motifs"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Developers",
+  "Topic :: Multimedia :: Sound/Audio :: MIDI",
+  "Topic :: Scientific/Engineering",
+  "Operating System :: Microsoft :: Windows",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3 :: Only",
+]
+dependencies = ["mido>=1.3"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.urls]
+Homepage = "https://github.com/kaleem94/gms-ma"
+Repository = "https://github.com/kaleem94/gms-ma"
+Issues = "https://github.com/kaleem94/gms-ma/issues"
+
+[project.scripts]
+gms-ma = "gms_ma.cli:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.dynamic]
+version = { attr = "gms_ma.__version__" }
+
+[tool.setuptools.packages.find]
+include = ["gms_ma*"]
+
+[tool.setuptools.package-data]
+gms_ma = [
+  "assets/*.html",
+  "assets/css/*.css",
+  "assets/js/common/*.js",
+  "assets/js/common/components/*.js",
+  "assets/js/timeline/*.js",
+  "assets/js/library/*.js",
+]

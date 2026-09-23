@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>gms-ma — loop library</title>
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/library.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+</head>
+<body>
+<div id="top">
+  <h1>gms-ma</h1>
+  <a href="/" title="Song-structure timeline viewer">Song timeline</a>
+  <span class="dim">Library</span>
+  <select id="songSel" title="Song drill-down"><option value="">All songs</option></select>
+  <input id="q" type="search" placeholder="search song / instrument / id…" style="width:200px">
+  <button id="btnClear" title="Clear all filters">Clear filters</button>
+  <button id="btnView" title="Organise the list as an expandable tree (song → instrument → building blocks)">View: Flat</button>
+  <select id="grpSel" title="How to group similar instruments within a song (used in Tree view)">
+    <option value="off">Group: Off</option>
+    <option value="family" selected>Group: Family</option>
+    <option value="program">Group: Program</option>
+  </select>
+  <span class="grow"></span>
+  <span id="total" class="dim"></span>
+  <select id="devSel"></select>
+  <button id="btnStop">&#9632; Stop</button>
+</div>
+<div id="body">
+  <aside id="filters"></aside>
+  <div id="mid">
+    <div id="bar"></div>
+    <div id="list"><div class="empty">Loading library…</div></div>
+    <div id="pager" class="hide"></div>
+  </div>
+  <aside id="side">
+    <h3>Selection</h3>
+    <div id="detail"><span class="dim">Pick a pattern to audition it and see where it comes from.</span></div>
+  </aside>
+</div>
+<div id="toast"></div>
+<script>
+  window.__maLoadFailed = function () {
+    var el = document.getElementById("err");
+    if (!el) {
+      el = document.createElement("div");
+      el.id = "err";
+      el.style.color = "#ff8f8f";
+      el.style.padding = "10px 14px";
+      document.body.insertBefore(el, document.body.firstChild);
+    }
+    el.textContent = "Could not load the library app \u2014 is the server still running? "
+      + "Start it with: python -m gms_ma view";
+  };
+</script>
+<script type="module" src="/assets/js/library/app.js" onerror="__maLoadFailed()"></script>
+</body>
+</html>
