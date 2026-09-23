@@ -6,6 +6,7 @@ import json
 import sys
 from pathlib import Path
 
+from . import __version__
 from .indexer import build_manifest
 from .store import Repository
 from . import reconstruct as rc
@@ -406,6 +407,7 @@ def cmd_optimize(args):
 def _build_parser():
     p = argparse.ArgumentParser(prog="gms-ma",
                                 description="GMS MIDI analyzer: loop decomposition & library")
+    p.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     sub = p.add_subparsers(dest="cmd", required=True)
 
     ix = sub.add_parser("index", help="index MIDI files into loops + DB")

@@ -14,16 +14,19 @@ description. Paths are relative to the repo root.
 | File | Description |
 |---|---|
 | `README.md` | Main project documentation: features, architecture, quickstart, commands, design notes. |
+| `CHANGELOG.md` | Release history (Keep a Changelog format). |
 | `REVIEW.md` | Concatenated code review of every module (overview + data-flow diagram + per-module notes). |
 | `FILE_STRUCTURE.md` | This file — annotated repository map. |
 | `LICENSE` | Apache License 2.0 full text. |
 | `pyproject.toml` | Packaging metadata (setuptools), `mido>=1.3` dependency, `gms-ma` console entry point and package data. |
+| `MANIFEST.in` | Files included in the sdist beyond the package (tests, docs, requirements). |
 | `.gitattributes` | Normalises line endings to LF and marks binary assets. |
 | `.gitignore` | Excludes venv, caches, generated `out/`, `db/*.db` and local `data/`/`db/`. |
 | `pytest.ini` | Pytest config (`pythonpath = .`, `testpaths = tests`, quiet output). |
 | `requirements.txt` | Runtime dependency: `mido>=1.3` (kept for convenience; authoritative deps live in `pyproject.toml`). |
 | `requirements-dev.txt` | Dev dependencies: runtime deps plus `pytest>=8`. |
-| `.github/workflows/ci.yml` | CI: pytest on Windows + Linux and a wheel/sdist build check. |
+| `.github/workflows/ci.yml` | CI: pytest on Windows + Linux and a wheel/sdist build + `twine check`. |
+| `.github/workflows/release.yml` | Tag-triggered build + publish to PyPI (and TestPyPI via manual dispatch) using trusted publishing. |
 
 ---
 

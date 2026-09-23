@@ -1,0 +1,10 @@
+include README.md
+include LICENSE
+include CHANGELOG.md
+include pyproject.toml
+include pytest.ini
+include requirements.txt
+include requirements-dev.txt
+recursive-include tests *.py
+recursive-include gms_ma/assets *.html *.css *.js
+global-exclude *.py[cod] __pycache__/* *.egg-info/*

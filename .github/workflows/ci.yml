@@ -33,12 +33,15 @@ jobs:
         with:
           python-version: "3.13"
       - name: Install build tooling
-        run: python -m pip install build
+        run: python -m pip install build "twine>=5"
       - name: Build distributions
         run: python -m build
+      - name: Validate distributions
+        run: python -m twine check dist/*
       - name: Verify wheel installs and exposes the console script
         run: |
           python -m venv .wheelcheck
           . .wheelcheck/bin/activate
           python -m pip install dist/*.whl
+          gms-ma --version
           gms-ma --help
